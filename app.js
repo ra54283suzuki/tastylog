@@ -1,6 +1,7 @@
 const PORT = process.env.PORT;
 const path = require("path");
 const logger = require("./lib/log/logger.js");
+const applicationlogger = require("./lib/log/applicationlogger.js");
 const express = require("express");
 const favicon = require("serve-favicon");
 const app = express();
@@ -13,9 +14,12 @@ app.disable("x-powered-by");
 app.use(favicon(path.join(__dirname, "/public/favicon.ico")));
 app.use("/public", express.static(path.join(__dirname, "/public")));
 
-//index.jsの呼び出し
+// Dynamic resource rooting
 app.use("/", require("./routes/index.js"));
 
+// Set applicaton log.
+app.use(applicationlogger());
+
 app.listen(PORT, () => {
-  logger.console.info(`Application listening at ${PORT}`);
+  logger.application.info(`Application listening at ${PORT}`);
 });
