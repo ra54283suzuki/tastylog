@@ -14,7 +14,7 @@ module.exports = {
     },
     AccessLogAppender: {
       type: "dateFile",
-      ffilename: path.join(LOG_ROOT_DIR, "./access.log"),
+      filename: path.join(LOG_ROOT_DIR, "./access.log"),
       pattern: "yyyyMMdd",
       daysToKeep: 7
     }
